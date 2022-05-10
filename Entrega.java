@@ -53,12 +53,8 @@ class Entrega {
     /*
      * És cert que ∀x,y. P(x,y) -> Q(x) ^ R(y) ?
      */
-    static boolean exercici1(
-        int[] universe,
-        BiPredicate<Integer, Integer> p,
-        Predicate<Integer> q,
-        Predicate<Integer> r) {
-
+    static boolean exercici1(int[] universe, BiPredicate<Integer, Integer> p, Predicate<Integer> q, Predicate<Integer> r) {
+      
       return false; // TO DO
     }
 
@@ -94,39 +90,23 @@ class Entrega {
       // ∀x,y. P(x,y) -> Q(x) ^ R(y)
 
       assertThat(
-          exercici1(
-              new int[] { 2, 3, 5, 6 },
-              (x, y) -> x * y <= 4,
-              x -> x <= 3,
-              x -> x <= 3
-          )
+          exercici1(new int[] { 2, 3, 5, 6 }, (x, y) -> x * y <= 4, x -> x <= 3, x -> x <= 3)
       );
 
       assertThat(
-          !exercici1(
-              new int[] { -2, -1, 0, 1, 2, 3 },
-              (x, y) -> x * y >= 0,
-              x -> x >= 0,
-              x -> x >= 0
-          )
+          !exercici1(new int[] { -2, -1, 0, 1, 2, 3 }, (x, y) -> x * y >= 0, x -> x >= 0, x -> x >= 0)
       );
 
       // Exercici 2
       // ∃!x. ∀y. Q(y) -> P(x) ?
 
       assertThat(
-          exercici2(
-              new int[] { -1, 1, 2, 3, 4 },
-              x -> x < 0,
-              x -> true
-          )
+          exercici2(new int[] { -1, 1, 2, 3, 4 }, x -> x < 0, x -> true)
       );
 
       assertThat(
           !exercici2(
-              new int[] { 1, 2, 3, 4, 5, 6 },
-              x -> x % 4 == 0, // x és múltiple de 4
-              x -> x % 2 == 0  // x és múltiple de 2
+              new int[] { 1, 2, 3, 4, 5, 6 }, x -> x % 4 == 0, x -> x % 2 == 0  // x és múltiple de 4, x és múltiple de 2
           )
       );
 
@@ -145,17 +125,11 @@ class Entrega {
       // És cert que ∀x. ∃!y. x·y ≡ 1 (mod n) ?
 
       assertThat(
-          exercici4(
-              new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 },
-              11
-          )
+          exercici4(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, 11)
       );
 
       assertThat(
-          !exercici4(
-              new int[] { 0, 5, 7 },
-              13
-          )
+          !exercici4(new int[] { 0, 5, 7 }, 13)
       );
     }
   }
@@ -232,17 +206,11 @@ class Entrega {
       // `p` és una partició d'`a`?
 
       assertThat(
-          exercici1(
-              new int[] { 1, 2, 3, 4, 5 },
-              new int[][] { {1, 2}, {3, 5}, {4} }
-          )
+          exercici1(new int[] { 1, 2, 3, 4, 5 }, new int[][] { {1, 2}, {3, 5}, {4} })
       );
 
       assertThat(
-          !exercici1(
-              new int[] { 1, 2, 3, 4, 5 },
-              new int[][] { {1, 2}, {5}, {1, 4} }
-          )
+          !exercici1(new int[] { 1, 2, 3, 4, 5 }, new int[][] { {1, 2}, {5}, {1, 4} })
       );
 
       // Exercici 2
@@ -260,27 +228,15 @@ class Entrega {
       }
 
       assertThat(
-          exercici2(
-              new int[] { 1, 2, 3, 4, 5, 6, 7 },
-              divisibility.toArray(new int[][] {}),
-              1
-          )
+          exercici2(new int[] { 1, 2, 3, 4, 5, 6, 7 }, divisibility.toArray(new int[][] {}), 1)
       );
 
       assertThat(
-          !exercici2(
-              new int[] { 1, 2, 3 },
-              new int[][] { {1, 1}, {2, 2}, {3, 3}, {1, 2}, {2, 3} },
-              1
-          )
+          !exercici2(new int[] { 1, 2, 3 }, new int[][] { {1, 1}, {2, 2}, {3, 3}, {1, 2}, {2, 3} }, 1)
       );
 
       assertThat(
-          !exercici2(
-              new int[] { 1, 2, 3, 4, 5, 6, 7 },
-              divisibility.toArray(new int[][] {}),
-              2
-          )
+          !exercici2(new int[] { 1, 2, 3, 4, 5, 6, 7 }, divisibility.toArray(new int[][] {}), 2)
       );
 
       // Exercici 3
