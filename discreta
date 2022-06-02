@@ -59,14 +59,34 @@ class Entrega {
         Predicate<Integer> q,
         Predicate<Integer> r) {
 
-      return false; // TO DO
+        for(int x : universe){
+            for(int y : universe){
+                if(p.test(x, y)&&!(q.test(x)&&r.test(y))){
+                        return false;
+                }
+            }
+        }
+      return true; // TO DO
     }
 
     /*
      * És cert que ∃!x. ∀y. Q(y) -> P(x) ?
      */
     static boolean exercici2(int[] universe, Predicate<Integer> p, Predicate<Integer> q) {
-      return false; // TO DO
+        int contador = 0;
+        for(int y:universe){
+            for(int  x:universe){
+                if (q.test(y)&& !p.test(x)){
+                    return false;
+                }else{
+                    contador++;
+                }                       
+            }   
+            if(contador!=1){
+                return false;
+            }
+          }       
+        return true; // TO DO
     }
 
     /*
@@ -76,14 +96,50 @@ class Entrega {
      * que cada un d'ells està ordenat de menor a major.
      */
     static boolean exercici3(int[][] universe) {
-      return false; // TO DO
+        boolean resultat = true;
+        for(int [] x : universe){
+            for (int [] y : universe){
+                if (!subconjunt(x,y)){
+                    resultat = false;
+                }
+            }
+            if (resultat == true){
+                return false;
+            } 
+        }
+      return true; // TO DO
     }
+    private static boolean subconjunt (int [] x, int [] y){
+        for(int i : x){
+            for (int j : y){
+                if (i==j){
+                    return true;
+                }
+            }
+        }
+        return false;
+      }
 
     /*
      * És cert que ∀x. ∃!y. x·y ≡ 1 (mod n) ?
      */
     static boolean exercici4(int[] universe, int n) {
-      return false; // TO DO
+      for (int x : universe){
+            if(mcd(x,n)!=1){
+                return false;
+            }
+        }
+        return true; // TO DO
+    }
+    
+    private static int mcd(int x, int y){
+        int num = 0;
+        for(int i = 1; i <= x && i <= y; i++)
+        {
+            if(x%i==0 && y%i==0)
+                num = i;
+        }
+        return num;
     }
 
     /*
