@@ -448,7 +448,14 @@ class Entrega {
      * Donada una matriu d'adjacencia `A` d'un graf no dirigit, retornau l'ordre i la mida del graf.
      */
     static int[] exercici1(int[][] A) {
-      return new int[]{}; // TO DO
+      int ordre = A.length, mida = 0;      
+        for(int i =0;i<A.length;i++){
+            for (int j =0;j<A.length;j++){
+                mida += A[i][j];
+            }           
+        }
+        mida = mida / 2;
+      return new int[]{ordre,mida}; // TO DO
     }
 
     /*
