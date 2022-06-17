@@ -241,7 +241,26 @@ class Entrega {
      * tant `a` com cada un dels elements de `p` està ordenat de menor a major.
      */
     static boolean exercici1(int[] a, int[][] p) {
-      return false; // TO DO
+      int [] b = new int[a.length];
+        int k=0;
+        for (int i=0; i<p.length;i++){
+            for (int j=0;j<p[i].length;j++){
+                if(k<a.length){
+                    b[k]=p[i][j];
+                    k++;
+                }
+                else{
+                    return false;
+                }
+            }
+        }
+        Arrays.sort(b);
+        for(int i=0;i<a.length;i++){
+            if (a[i]!=b[i]){
+                return false;
+            }
+        }       
+      return true; 
     }
 
     /*
@@ -259,7 +278,17 @@ class Entrega {
      * que `y` pertany a `codom` i que tant `dom` com `codom` també estàn ordenats de menor a major.
      */
     static int[] exercici3(int[] dom, int[] codom, Function<Integer, Integer> f, int y) {
-      return new int[]{}; // TO DO
+      int[] antimatge = new int[dom.length];
+        int aux = 0;
+        for(int x : dom){
+            if (f.apply(x)==y){
+                antimatge[aux]=x;
+                aux++;
+            }
+        }
+        antimatge = Arrays.copyOf(antimatge, aux);
+        Arrays.sort(antimatge);
+      return antimatge;
     }
 
     /*
@@ -278,8 +307,55 @@ class Entrega {
     static final int BIJECTIVE = INJECTIVE + SURJECTIVE;
 
     static int exercici4(int[] dom, int[] codom, Function<Integer, Integer> f) {
-      return -1; // TO DO
+       boolean injectiva = true;
+        boolean exhaustiva = true;
+        int [] imatge = new int [dom.length];
+        //calcular imatges del domini(dom)
+        for(int i = 0; i<dom.length;i++ ){
+            imatge[i] = f.apply(dom[i]);
+        }
+        Arrays.sort(imatge);//ordenar
+        
+        //comprovar que es exhaustiva(que tot element de imatge estigui a codom)
+        for(int i =0; i< codom.length ;i++){
+            boolean comprovar = false;//cada vegada que es faci el bucle s'inicialitzarà a false;
+            for (int j = 0;j<imatge.length;j++){
+                if (imatge[j]== codom[i]){
+                    comprovar = true;//si troba la imatge dins del codom es posarà a true
+                }             
+            }
+            if (!comprovar){//si no en troba una el valor de exhaustiva es posara a false 
+                            // i ja es podrà sortir del bucle ja que savem que no es exhaustiva
+                exhaustiva = false;
+                break;
+            }          
+        }
+        
+        //comprovar que es injectiva
+        for (int i = 0; i<dom.length;i++){
+            for (int j = i+1; j<dom.length;j++){
+                //comprovar si dos numeros diferents dins de dom tenen la mateixa imatge 
+                //si en trobem un que tingui la mateixa vol dir que no es injectiva
+                if (f.apply(dom[i]).equals(f.apply(dom[j]))){
+                    injectiva = false;
+                    break;
+                }
+            }
+        }
+        if (injectiva && exhaustiva){
+            return BIJECTIVE;
+        }
+        if (injectiva){
+            return INJECTIVE;
+        }
+        if (exhaustiva){
+            return SURJECTIVE;
+        }
+        
+      return NOTHING_SPECIAL; // TO DO
     }
+
+    
 
     /*
      * Aquí teniu alguns exemples i proves relacionades amb aquests exercicis (vegeu `main`)
