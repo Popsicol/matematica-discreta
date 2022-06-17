@@ -440,7 +440,7 @@ class Entrega {
         //mcd(a,b)= d es un divisor de c.
         int d = exercici1(a, b);
         //para que un numero sea divisor de otro el residuo tiene que ser 0
-        if (d % c == 0) {
+        if (c % d == 0) {
             return true;
 
         } else {
