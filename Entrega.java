@@ -438,7 +438,7 @@ class Entrega {
     static boolean exercici2(int a, int b, int c) {
         //la ecuacion diofantica aX + bY = c tiene solucion solo si el 
         //mcd(a,b)= d es un divisor de c.
-        int d = ejercicio1T3(a, b);
+        int d = exercici1(a, b);
         //para que un numero sea divisor de otro el residuo tiene que ser 0
         if (d % c == 0) {
             return true;
@@ -456,7 +456,7 @@ class Entrega {
      */
     static int exercici3(int a, int n) {
             int inversoModular;
-        if (ejercicio1T3(a, n) == 1) {
+        if (exercici1(a, n) == 1) {
             for (int i = 1; i < n; i++) {
                 int res = (a * i) % n;
                 if (res == 1) {
